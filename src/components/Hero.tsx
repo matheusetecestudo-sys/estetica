@@ -1,189 +1,172 @@
 import { motion } from 'framer-motion';
+import { MessageCircle } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
-    <section className="hero-vibrant">
-      <div className="container">
-        <div className="hero-flex">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="hero-content"
-          >
-            <span className="badge-vibrant">ESTÉTICA MÉDICA AVANÇADA</span>
-            <h1>A ciência de ser <br /> <span className="gradient-text">Extraordinária.</span></h1>
-            <p>
-              Protocolos de luxo desenhados para mulheres que não aceitam o comum.
-              Harmonização facial com precisão cirúrgica e resultados que impõem presença.
-            </p>
-            <div className="hero-btns-vibrant">
-              <button className="btn-vibrant">Agende sua Experiência</button>
-              <button className="btn-outline-vibrant">Ver Protocolos</button>
-            </div>
+    <section id="home" className="hero-inst">
+      <div className="container hero-inst-grid">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="hero-inst-text"
+        >
+          <span className="inst-tag">ALTA PERFORMANCE EM ESTÉTICA</span>
+          <h1>Excelência Médica <br /> para sua <span className="inst-highlight">Beleza.</span></h1>
+          <p>
+            O Instituto Reliana une ciência, tecnologia de vanguarda e um olhar artístico
+            para entregar protocolos exclusivos que transformam e rejuvenescem com naturalidade.
+          </p>
+          <div className="hero-inst-actions">
+            <a href="https://wa.me/5511999999999" target="_blank" className="btn-whatsapp-inst">
+              <MessageCircle size={24} />
+              AGENDAR NO WHATSAPP
+            </a>
+            <a href="#tratamentos" className="btn-outline-inst">VER TRATAMENTOS</a>
+          </div>
 
-            <div className="trust-badges">
-              <div className="trust-item">
-                <strong>+5.000</strong>
-                <span>Pacientes Satisfeitas</span>
-              </div>
-              <div className="trust-item">
-                <strong>Especialista</strong>
-                <span>Títulos Internacionais</span>
-              </div>
+          <div className="inst-floating-results">
+            <div className="res-mini-box">
+              <span className="num">12k+</span>
+              <span className="lab">Pacientes</span>
             </div>
-          </motion.div>
+            <div className="res-mini-box">
+              <span className="num">15</span>
+              <span className="lab">Premiações</span>
+            </div>
+          </div>
+        </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 1.2, type: 'spring' }}
-            className="hero-visual"
-          >
-            <div className="main-image-wrapper">
-              <img
-                src="https://images.unsplash.com/photo-1596462502278-27bfac44221d?q=80&w=2070&auto=format&fit=crop"
-                alt="Mulher Empoderada"
-                className="main-hero-img"
-              />
-              <div className="floating-card glass-box">
-                <span className="rating">★★★★★</span>
-                <p>Referência em resultados naturais em SP</p>
-              </div>
+        <motion.div
+          initial={{ opacity: 0, filter: 'blur(10px)' }}
+          animate={{ opacity: 1, filter: 'blur(0px)' }}
+          transition={{ duration: 1.2 }}
+          className="hero-inst-visual"
+        >
+          <div className="inst-image-stack">
+            <img
+              src="https://images.unsplash.com/photo-1596462502278-27bfac44221d?q=80&w=2070&auto=format&fit=crop"
+              alt="Estética de Elite"
+            />
+            <div className="badge-vibrant-luxe">
+              <span>★ Referência Nacional em Estética Avançada</span>
             </div>
-            <div className="decoration-blob"></div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
 
       <style>{`
-        .hero-vibrant {
+        .hero-inst {
           min-height: 100vh;
-          padding-top: 150px;
+          padding-top: 180px;
           padding-bottom: 100px;
-          background: radial-gradient(circle at top right, rgba(189, 30, 81, 0.05) 0%, #fff 60%);
+          background: radial-gradient(circle at 10% 20%, rgba(255, 0, 127, 0.03) 0%, #fff 100%);
           display: flex;
           align-items: center;
           position: relative;
-          overflow: hidden;
         }
 
-        .hero-flex {
+        .hero-inst-grid {
           display: grid;
           grid-template-columns: 1.1fr 0.9fr;
-          gap: 4rem;
+          gap: 6rem;
           align-items: center;
         }
 
-        .badge-vibrant {
-          display: inline-block;
+        .inst-tag {
+          display: block;
+          font-size: 0.9rem;
+          letter-spacing: 0.4em;
           color: var(--color-primary);
           font-weight: 800;
-          letter-spacing: 0.3em;
-          font-size: 0.85rem;
           margin-bottom: 2rem;
-          background: rgba(189, 30, 81, 0.1);
-          padding: 8px 20px;
-          border-radius: 4px;
         }
 
-        .hero-content h1 {
-          font-size: clamp(3.5rem, 8vw, 6rem);
+        .hero-inst-text h1 {
+          font-size: clamp(3.5rem, 7vw, 5.5rem);
           margin-bottom: 2.5rem;
+          color: var(--color-dark);
         }
 
-        .gradient-text {
-          background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 60%, var(--color-gold) 100%);
+        .inst-highlight {
+          color: var(--color-primary);
+          background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           font-style: italic;
         }
 
-        .hero-content p {
+        .hero-inst-text p {
           font-size: 1.35rem;
-          max-width: 600px;
+          max-width: 620px;
           margin-bottom: 4rem;
-          color: var(--color-text);
+          color: var(--color-text-muted);
         }
 
-        .hero-btns-vibrant {
+        .hero-inst-actions {
           display: flex;
           gap: 2rem;
           margin-bottom: 5rem;
         }
 
-        .trust-badges {
+        .inst-floating-results {
           display: flex;
           gap: 4rem;
           border-top: 1px solid #eee;
           padding-top: 3rem;
         }
 
-        .trust-item strong {
-          display: block;
-          font-size: 1.8rem;
-          color: var(--color-primary);
+        .res-mini-box {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .res-mini-box .num {
           font-family: var(--font-serif);
+          font-size: 2.2rem;
+          color: var(--color-dark);
+          font-weight: 900;
         }
 
-        .trust-item span {
-          font-size: 0.85rem;
+        .res-mini-box .lab {
+          font-size: 0.8rem;
           text-transform: uppercase;
-          letter-spacing: 0.1em;
-          font-weight: 600;
+          letter-spacing: 0.2em;
+          font-weight: 700;
+          color: var(--color-primary);
         }
 
-        .hero-visual {
+        .inst-image-stack {
           position: relative;
         }
 
-        .main-image-wrapper {
-          position: relative;
-          z-index: 2;
-        }
-
-        .main-hero-img {
+        .inst-image-stack img {
           width: 100%;
-          height: 750px;
+          height: 800px;
           object-fit: cover;
           border-radius: 4px;
-          box-shadow: 30px 30px 0px var(--color-bg-soft);
+          box-shadow: 40px 40px 0 var(--color-bg-light);
         }
 
-        .floating-card {
+        .badge-vibrant-luxe {
           position: absolute;
           bottom: 50px;
-          left: -40px;
-          padding: 2.5rem;
-          border-radius: 4px;
-          max-width: 250px;
-          text-align: center;
-        }
-
-        .rating {
-          color: var(--color-gold);
-          display: block;
-          margin-bottom: 1rem;
-          letter-spacing: 0.2em;
-        }
-
-        .decoration-blob {
-          position: absolute;
-          top: -10%;
-          right: -20%;
-          width: 600px;
-          height: 600px;
-          background: rgba(189, 30, 81, 0.05);
-          filter: blur(100px);
-          border-radius: 50%;
-          z-index: 1;
+          right: -30px;
+          background: var(--color-dark);
+          color: white;
+          padding: 1.5rem 2.5rem;
+          font-weight: 800;
+          font-size: 0.8rem;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          box-shadow: 20px 20px 50px rgba(0,0,0,0.2);
         }
 
         @media (max-width: 1200px) {
-          .hero-flex { grid-template-columns: 1fr; text-align: center; }
-          .hero-content p, .hero-btns-vibrant, .trust-badges { margin-left: auto; margin-right: auto; justify-content: center; }
-          .main-hero-img { height: 500px; }
-          .floating-card { left: 50%; transform: translateX(-50%); bottom: -30px; }
+          .hero-inst-grid { grid-template-columns: 1fr; text-align: center; }
+          .hero-inst-text p, .hero-inst-actions, .inst-floating-results { margin-left: auto; margin-right: auto; justify-content: center; }
+          .inst-image-stack img { height: 500px; }
+          .badge-vibrant-luxe { right: 20px; }
         }
       `}</style>
     </section>

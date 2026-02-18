@@ -1,188 +1,244 @@
 import { useState, useEffect } from 'react';
-import { MessageCircle, Menu, X, Instagram } from 'lucide-react';
+import { MessageCircle, Menu, X, Phone, MapPin } from 'lucide-react';
 
-const HeaderVibrant: React.FC = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileMenu, setMobileMenu] = useState(false);
+const Header: React.FC = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <header className={`navbar-vibrant ${scrolled ? 'scrolled' : ''}`}>
-      <div className="container nav-content-v">
-        <div className="nav-logo-v">
-          <a href="/">
-            <span className="logo-text-v">RELIANA <span className="highlight-v">ESTÉTICA</span></span>
-            <span className="logo-tag-v">ALTA PERFORMANCE MÉDICA</span>
-          </a>
-        </div>
-
-        <nav className="nav-links-v desktop-only">
-          <a href="#procedimentos">Tratamentos</a>
-          <a href="#resultados">Resultados</a>
-          <a href="#contato">Contato</a>
-        </nav>
-
-        <div className="nav-actions-v">
-          <a href="#" className="social-link-v desktop-only"><Instagram size={22} /></a>
-          <a href="https://wa.me/5511999999999" target="_blank" className="btn-vibrant-nav desktop-only">
-            <MessageCircle size={18} />
-            <span>Consultoria VIP</span>
-          </a>
-          <button className="mobile-toggle-v" onClick={() => setMobileMenu(!mobileMenu)}>
-            {mobileMenu ? <X size={30} /> : <Menu size={30} />}
-          </button>
+    <header className={`inst-header ${isScrolled ? 'scrolled' : ''}`}>
+      <div className="top-bar">
+        <div className="container top-flex">
+          <div className="top-info">
+            <span><MapPin size={14} /> Itaim Bibi, São Paulo</span>
+            <span><Phone size={14} /> (11) 99999-9999</span>
+          </div>
+          <div className="top-social">
+            <a href="#">INSTAGRAM</a>
+            <a href="#">FACEBOOK</a>
+          </div>
         </div>
       </div>
 
-      <div className={`mobile-menu-v ${mobileMenu ? 'active' : ''}`}>
+      <div className="main-nav-bar">
+        <div className="container nav-flex">
+          <div className="logo-inst">
+            <a href="/">
+              <span className="logo-luxe">RELIANA</span>
+              <span className="logo-tag">INSTITUTO DE ESTÉTICA</span>
+            </a>
+          </div>
+
+          <nav className="desktop-menu">
+            <a href="#home">Home</a>
+            <a href="#sobre">A Clínica</a>
+            <a href="#tratamentos">Tratamentos</a>
+            <a href="#resultados">Resultados</a>
+            <a href="#contato">Contato</a>
+          </nav>
+
+          <div className="nav-cta">
+            <a href="https://wa.me/5511999999999" target="_blank" className="btn-wa-header">
+              <MessageCircle size={18} />
+              <span>FALAR NO WHATSAPP</span>
+            </a>
+            <button className="mobile-trigger" onClick={() => setIsMobileOpen(true)}>
+              <Menu size={28} />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Full Screen Mobile Menu */}
+      <div className={`mobile-modal ${isMobileOpen ? 'active' : ''}`}>
+        <button className="close-trigger" onClick={() => setIsMobileOpen(false)}>
+          <X size={35} />
+        </button>
         <nav>
-          <a href="#procedimentos" onClick={() => setMobileMenu(false)}>Tratamentos</a>
-          <a href="#resultados" onClick={() => setMobileMenu(false)}>Resultados</a>
-          <a href="#contato" onClick={() => setMobileMenu(false)}>Contato</a>
-          <a href="https://wa.me/5511999999999" className="mobile-cta-v">Falar Especialista</a>
+          <a href="#home" onClick={() => setIsMobileOpen(false)}>Início</a>
+          <a href="#sobre" onClick={() => setIsMobileOpen(false)}>A Clínica</a>
+          <a href="#tratamentos" onClick={() => setIsMobileOpen(false)}>Tratamentos</a>
+          <a href="#resultados" onClick={() => setIsMobileOpen(false)}>Resultados</a>
+          <a href="#contato" onClick={() => setIsMobileOpen(false)}>Contato</a>
+          <a href="https://wa.me/5511999999999" className="wa-modal-btn">AGENDAR POR WHATSAPP</a>
         </nav>
       </div>
 
       <style>{`
-        .navbar-vibrant {
+        .inst-header {
           position: fixed;
           top: 0;
           left: 0;
           width: 100%;
-          padding: 2.5rem 0;
           z-index: 1000;
-          transition: var(--transition);
+          transition: var(--transition-smooth);
         }
 
-        .navbar-vibrant.scrolled {
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(20px);
-          padding: 1.2rem 0;
-          box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-          border-bottom: 1px solid rgba(0,0,0,0.05);
+        .top-bar {
+          background: var(--color-dark);
+          color: white;
+          padding: 8px 0;
+          font-size: 0.75rem;
+          letter-spacing: 0.1em;
+          font-weight: 500;
         }
 
-        .nav-content-v {
+        .top-flex {
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .top-info { display: flex; gap: 2rem; }
+        .top-info span { display: flex; align-items: center; gap: 8px; }
+        .top-social { display: flex; gap: 1.5rem; }
+        .top-social a { color: var(--color-gold); font-weight: 700; text-decoration: none; }
+
+        .main-nav-bar {
+          background: white;
+          padding: 1.5rem 0;
+          box-shadow: 0 4px 30px rgba(0,0,0,0.03);
+          transition: var(--transition-smooth);
+        }
+
+        .scrolled .main-nav-bar {
+          padding: 1rem 0;
+        }
+
+        .nav-flex {
           display: flex;
           justify-content: space-between;
           align-items: center;
         }
 
-        .logo-text-v {
-          font-family: var(--font-serif);
-          font-size: 2.2rem;
-          color: var(--color-dark);
-          letter-spacing: -0.02em;
-          font-weight: 800;
-        }
-
-        .highlight-v {
-          color: var(--color-primary);
-          font-style: italic;
-        }
-
-        .logo-tag-v {
-          display: block;
-          font-size: 0.65rem;
-          letter-spacing: 0.4em;
-          color: var(--color-text-light);
-          margin-top: 5px;
-          font-weight: 700;
-        }
-
-        .nav-links-v {
+        .logo-inst a {
           display: flex;
-          gap: 3.5rem;
+          flex-direction: column;
+          text-decoration: none;
         }
 
-        .nav-links-v a {
+        .logo-luxe {
+          font-family: var(--font-serif);
+          font-size: 2.4rem;
+          font-weight: 900;
+          color: var(--color-dark);
+          line-height: 1;
+        }
+
+        .logo-tag {
+          font-size: 0.6rem;
+          letter-spacing: 0.4em;
+          color: var(--color-primary);
+          font-weight: 800;
+          margin-top: 5px;
+        }
+
+        .desktop-menu {
+          display: flex;
+          gap: 2.5rem;
+        }
+
+        .desktop-menu a {
+          text-decoration: none;
+          color: var(--color-dark);
+          font-weight: 700;
           font-size: 0.85rem;
           text-transform: uppercase;
-          letter-spacing: 0.15em;
-          font-weight: 700;
-          color: var(--color-dark);
+          letter-spacing: 0.1em;
+          transition: 0.3s;
         }
 
-        .nav-links-v a:hover {
+        .desktop-menu a:hover {
           color: var(--color-primary);
         }
 
-        .btn-vibrant-nav {
+        .btn-wa-header {
           display: flex;
           align-items: center;
           gap: 10px;
-          background: var(--color-primary);
+          background: var(--gradient-vibrant);
           color: white;
-          padding: 0.9rem 2rem;
+          padding: 1rem 2rem;
           border-radius: 4px;
-          font-size: 0.85rem;
-          font-weight: 700;
+          text-decoration: none;
+          font-weight: 800;
+          font-size: 0.8rem;
+          box-shadow: 0 10px 20px rgba(255, 0, 127, 0.2);
         }
 
-        .social-link-v {
-          color: var(--color-dark);
-          margin-right: 2rem;
-        }
-
-        .mobile-toggle-v {
+        .mobile-trigger {
           display: none;
           background: none;
           border: none;
           color: var(--color-dark);
+          cursor: pointer;
         }
 
-        .mobile-menu-v {
+        .mobile-modal {
           position: fixed;
           top: 0;
-          right: 0;
-          width: 80%;
+          left: 0;
+          width: 100%;
           height: 100vh;
-          background: white;
-          z-index: 999;
-          padding: 100px 50px;
-          transform: translateX(100%);
-          transition: var(--transition);
-          box-shadow: -20px 0 60px rgba(0,0,0,0.1);
+          background: var(--color-dark);
+          z-index: 2000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          visibility: hidden;
+          opacity: 0;
+          transition: 0.5s;
         }
 
-        .mobile-menu-v.active {
-          transform: translateX(0);
+        .mobile-modal.active {
+          visibility: visible;
+          opacity: 1;
         }
 
-        .mobile-menu-v nav {
+        .close-trigger {
+          position: absolute;
+          top: 40px;
+          right: 40px;
+          background: none;
+          border: none;
+          color: white;
+        }
+
+        .mobile-modal nav {
           display: flex;
           flex-direction: column;
-          gap: 3rem;
-        }
-
-        .mobile-menu-v a {
-          font-size: 2.5rem;
-          font-family: var(--font-serif);
-          color: var(--color-dark);
-        }
-
-        .mobile-cta-v {
-          background: var(--color-primary) !important;
-          color: white !important;
-          padding: 1.5rem;
+          gap: 2.5rem;
           text-align: center;
-          font-size: 1.2rem !important;
-          font-family: var(--font-sans) !important;
-          font-weight: 700;
         }
 
-        @media (max-width: 992px) {
-          .desktop-only { display: none; }
-          .mobile-toggle-v { display: block; }
+        .mobile-modal a {
+          color: white;
+          font-family: var(--font-serif);
+          font-size: 2.5rem;
+          text-decoration: none;
+        }
+
+        .wa-modal-btn {
+          background: var(--gradient-vibrant) !important;
+          font-family: var(--font-sans) !important;
+          font-size: 1rem !important;
+          padding: 1.5rem !important;
+          font-weight: 800 !important;
+        }
+
+        @media (max-width: 1100px) {
+          .desktop-menu { display: none; }
+          .mobile-trigger { display: block; }
+          .btn-wa-header { display: none; }
         }
       `}</style>
     </header>
   );
 };
 
-export default HeaderVibrant;
+export default Header;

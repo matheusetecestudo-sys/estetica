@@ -3,105 +3,99 @@ import { motion } from 'framer-motion';
 const Hero: React.FC = () => {
   return (
     <section className="hero">
-      <div className="hero-background">
+      <div className="hero-video-container">
         <div className="hero-overlay"></div>
+        {/* Usando uma imagem de alta qualidade com efeito de zoom suave para simular vídeo cinematográfico */}
         <img
-          src="https://images.unsplash.com/photo-1512290923902-8a9f81dc2069?q=80&w=2070&auto=format&fit=crop"
-          alt="Clínica de Estética de Luxo"
-          className="hero-image"
+          src="https://images.unsplash.com/photo-1596462502278-27bfac44221d?q=80&w=2070&auto=format&fit=crop"
+          alt="Clínica de Luxo"
+          className="hero-media"
         />
       </div>
 
       <div className="container hero-content">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="hero-text"
-        >
+        <div className="hero-text-wrapper">
           <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            initial={{ opacity: 0, letterSpacing: '1em' }}
+            animate={{ opacity: 1, letterSpacing: '0.4em' }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
             className="hero-tagline"
           >
-            Ciência, Arte e Exclusividade
+            A CIÊNCIA DO REJUVENESCIMENTO
           </motion.span>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
+            transition={{ duration: 1, delay: 0.5 }}
           >
-            Realçando sua beleza com <br />
-            <span className="luxury-text-gradient">naturalidade médica</span>
+            Beleza que <br />
+            <span className="gold-text italic">impõe presença.</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
+            transition={{ duration: 1, delay: 1 }}
           >
-            Protocolos de luxo personalizados para resultados sofisticados e duradouros.
-            A tecnologia mais avançada do mundo a serviço da sua confiança.
+            Protocolos avançados e exclusivos para quem não aceita nada menos que a excelência médica.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-            className="hero-buttons"
+            transition={{ duration: 1, delay: 1.5 }}
+            className="hero-actions"
           >
-            <button className="btn-premium solid">Agendar Avaliação</button>
-            <button className="btn-premium">Conhecer Tratamentos</button>
+            <button className="btn-luxury primary">Agendar Avaliação</button>
+            <button className="btn-luxury secondary">Falar no WhatsApp</button>
           </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 1 }}
-            className="hero-badges"
-          >
-            <div className="badge">
-              <span className="badge-number">15+</span>
-              <span className="badge-label">Anos de Excelência</span>
-            </div>
-            <div className="badge">
-              <span className="badge-number">10k+</span>
-              <span className="badge-label">Pacientes Satisfeitos</span>
-            </div>
-            <div className="badge">
-              <span className="badge-number">MD</span>
-              <span className="badge-label">Corpo Clínico Especializado</span>
-            </div>
-          </motion.div>
-        </motion.div>
+        </div>
       </div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="scroll-indicator"
+      >
+        <div className="mouse">
+          <div className="wheel"></div>
+        </div>
+      </motion.div>
 
       <style>{`
         .hero {
           position: relative;
           height: 100vh;
-          min-height: 800px;
+          width: 100%;
           display: flex;
           align-items: center;
           overflow: hidden;
+          background-color: var(--color-black);
         }
 
-        .hero-background {
+        .hero-video-container {
           position: absolute;
           top: 0;
           left: 0;
           width: 100%;
           height: 100%;
-          z-index: -1;
+          z-index: 0;
         }
 
-        .hero-image {
+        .hero-media {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: center;
+          filter: brightness(0.4) grayscale(20%);
+          transform: scale(1.1);
+          animation: slowZoom 20s infinite alternate;
+        }
+
+        @keyframes slowZoom {
+          from { transform: scale(1); }
+          to { transform: scale(1.1); }
         }
 
         .hero-overlay {
@@ -110,82 +104,90 @@ const Hero: React.FC = () => {
           left: 0;
           width: 100%;
           height: 100%;
-          background: linear-gradient(90deg, rgba(247, 246, 244, 0.95) 0%, rgba(247, 246, 244, 0.6) 50%, rgba(255, 255, 255, 0) 100%);
-        }
-
-        .hero-content {
+          background: radial-gradient(circle at center, transparent 0%, rgba(11, 11, 13, 0.8) 100%);
           z-index: 1;
         }
 
-        .hero-text {
-          max-width: 700px;
+        .hero-content {
+          position: relative;
+          z-index: 2;
+        }
+
+        .hero-text-wrapper {
+          max-width: 900px;
         }
 
         .hero-tagline {
-          text-transform: uppercase;
-          letter-spacing: 0.4em;
-          font-size: 0.85rem;
-          color: var(--color-gold);
+          font-family: var(--font-sans);
+          font-size: 0.8rem;
+          color: var(--color-nude);
           display: block;
-          margin-bottom: 1.5rem;
+          margin-bottom: 2rem;
           font-weight: 500;
         }
 
-        .hero-text h1 {
-          font-size: 4.5rem;
-          margin-bottom: 1.5rem;
-          color: var(--color-graphite);
+        .hero h1 {
+          font-size: clamp(4rem, 10vw, 8rem);
+          margin-bottom: 2rem;
+          line-height: 0.95;
         }
 
-        .hero-text p {
-          font-size: 1.25rem;
-          margin-bottom: 3rem;
-          color: var(--color-warm-gray);
-          max-width: 550px;
+        .italic {
+          font-style: italic;
         }
 
-        .hero-buttons {
-          display: flex;
-          gap: 1.5rem;
+        .hero p {
+          font-size: 1.4rem;
           margin-bottom: 4rem;
+          max-width: 600px;
+          color: var(--color-white-warm);
+          opacity: 0.7;
         }
 
-        .hero-badges {
+        .hero-actions {
           display: flex;
-          gap: 3rem;
-          border-top: 1px solid rgba(198, 167, 94, 0.2);
-          padding-top: 2rem;
+          gap: 2rem;
         }
 
-        .badge {
+        .scroll-indicator {
+          position: absolute;
+          bottom: 40px;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 2;
+        }
+
+        .mouse {
+          width: 24px;
+          height: 40px;
+          border: 1px solid rgba(214, 194, 176, 0.3);
+          border-radius: 20px;
           display: flex;
-          flex-direction: column;
+          justify-content: center;
+          padding-top: 8px;
         }
 
-        .badge-number {
-          font-family: var(--font-serif);
-          font-size: 2rem;
-          color: var(--color-gold);
-          line-height: 1;
+        .wheel {
+          width: 2px;
+          height: 6px;
+          background: var(--color-gold-static);
+          border-radius: 1px;
+          animation: scrollWheel 2s infinite;
         }
 
-        .badge-label {
-          font-size: 0.7rem;
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          color: var(--color-warm-gray);
-          margin-top: 0.5rem;
+        @keyframes scrollWheel {
+          0% { opacity: 0; transform: translateY(0); }
+          50% { opacity: 1; transform: translateY(6px); }
+          100% { opacity: 0; transform: translateY(12px); }
         }
 
-        @media (max-width: 992px) {
-          .hero-overlay {
-            background: linear-gradient(0deg, rgba(247, 246, 244, 1) 0%, rgba(247, 246, 244, 0.8) 100%);
+        @media (max-width: 768px) {
+          .hero-actions {
+            flex-direction: column;
+            width: 100%;
           }
-          .hero-text h1 {
-            font-size: 3rem;
-          }
-          .hero-badges {
-            gap: 1.5rem;
+          .hero h1 {
+            font-size: 3.5rem;
           }
         }
       `}</style>

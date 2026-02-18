@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Phone, MessageCircle, Menu, X } from 'lucide-react';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,60 +11,26 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'O Conceito', href: '#conceito' },
-    { name: 'Procedimentos', href: '#procedimentos' },
-    { name: 'Resultados', href: '#resultados' },
-    { name: 'A Clínica', href: '#clinica' },
-    { name: 'Contato', href: '#contato' },
-  ];
-
   return (
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
-      <div className="container header-content">
+      <div className="container header-container">
         <div className="logo">
-          <span className="logo-text">CLÍNICA <span className="gold">ESTÉTICA</span></span>
-          <span className="logo-sub">AVANÇADA</span>
+          <a href="/">
+            <span className="logo-main">ESTÉTICA</span>
+            <span className="logo-sub">AVANÇADA</span>
+          </a>
         </div>
 
-        <nav className="desktop-nav">
-          {navLinks.map((link) => (
-            <a key={link.name} href={link.href} className="nav-link">
-              {link.name}
-            </a>
-          ))}
+        <nav className="nav-desktop">
+          <a href="#procedimentos" className="nav-link">Procedimentos</a>
+          <a href="#conceito" className="nav-link">O Conceito</a>
+          <a href="#resultados" className="nav-link">Resultados</a>
+          <a href="#contato" className="nav-link">Contato</a>
         </nav>
 
-        <div className="header-actions">
-          <a href="tel:+5511999999999" className="icon-link desktop-only">
-            <Phone size={18} />
-          </a>
-          <a href="https://wa.me/5511999999999" className="icon-link whatsapp" target="_blank" rel="noopener noreferrer">
-            <MessageCircle size={18} />
-          </a>
-          <button className="btn-premium btn-small desktop-only">Agendar Avaliação</button>
-
-          <button className="mobile-menu-toggle" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+        <div className="header-cta">
+          <a href="https://wa.me/5511999999999" target="_blank" className="btn-luxury secondary small">Agendar Agora</a>
         </div>
-      </div>
-
-      {/* Mobile Menu */}
-      <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
-        <nav className="mobile-nav">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="mobile-nav-link"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {link.name}
-            </a>
-          ))}
-          <button className="btn-premium solid" style={{ marginTop: '2rem' }}>Agendar Avaliação</button>
-        </nav>
       </div>
 
       <style>{`
@@ -75,148 +39,93 @@ const Header: React.FC = () => {
           top: 0;
           left: 0;
           width: 100%;
+          padding: 2.5rem 0;
           z-index: 1000;
-          padding: 1.5rem 0;
-          transition: var(--transition-smooth);
+          transition: var(--transition-ultra);
         }
 
         .header.scrolled {
-          background-color: rgba(247, 246, 244, 0.95);
-          backdrop-filter: blur(10px);
-          padding: 1rem 0;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+          padding: 1.25rem 0;
+          background-color: rgba(11, 11, 13, 0.9);
+          backdrop-filter: blur(20px);
+          border-bottom: 1px solid rgba(214, 194, 176, 0.1);
         }
 
-        .header-content {
+        .header-container {
           display: flex;
           justify-content: space-between;
           align-items: center;
         }
 
-        .logo {
+        .logo a {
           display: flex;
           flex-direction: column;
-          line-height: 1;
+          text-decoration: none;
         }
 
-        .logo-text {
+        .logo-main {
           font-family: var(--font-serif);
           font-size: 1.5rem;
+          color: var(--color-white-warm);
           letter-spacing: 0.1em;
-          font-weight: 600;
-        }
-
-        .logo-text .gold {
-          color: var(--color-gold);
+          line-height: 1;
         }
 
         .logo-sub {
           font-family: var(--font-sans);
           font-size: 0.6rem;
-          letter-spacing: 0.4em;
-          color: var(--color-warm-gray);
-          margin-top: 0.2rem;
+          color: var(--color-nude);
+          letter-spacing: 0.5em;
+          margin-top: 0.3rem;
+          font-weight: 300;
         }
 
-        .desktop-nav {
+        .nav-desktop {
           display: flex;
-          gap: 2rem;
+          gap: 3rem;
         }
 
         .nav-link {
-          font-size: 0.85rem;
+          font-family: var(--font-sans);
+          font-size: 0.75rem;
           text-transform: uppercase;
-          letter-spacing: 0.15em;
-          color: var(--color-graphite);
-          font-weight: 500;
+          letter-spacing: 0.2em;
+          color: var(--color-white-warm);
+          text-decoration: none;
+          font-weight: 300;
           position: relative;
+          opacity: 0.8;
+          transition: var(--transition-ultra);
+        }
+
+        .nav-link:hover {
+          opacity: 1;
+          color: var(--color-nude);
         }
 
         .nav-link::after {
           content: '';
           position: absolute;
-          bottom: -5px;
+          bottom: -8px;
           left: 0;
           width: 0;
           height: 1px;
-          background-color: var(--color-gold);
-          transition: var(--transition-smooth);
+          background: var(--color-gold-metallic);
+          transition: var(--transition-ultra);
         }
 
         .nav-link:hover::after {
           width: 100%;
         }
 
-        .header-actions {
-          display: flex;
-          align-items: center;
-          gap: 1.5rem;
-        }
-
-        .icon-link {
-          color: var(--color-graphite);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: var(--transition-smooth);
-        }
-
-        .icon-link:hover {
-          color: var(--color-gold);
-        }
-
-        .icon-link.whatsapp {
-          color: #25D366;
-        }
-
-        .btn-small {
-          padding: 0.6rem 1.5rem;
-          font-size: 0.7rem;
-        }
-
-        .mobile-menu-toggle {
-          display: none;
-          color: var(--color-graphite);
-        }
-
-        .mobile-menu {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100vh;
-          background-color: var(--color-off-white);
-          z-index: 999;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transform: translateY(-100%);
-          transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .mobile-menu.open {
-          transform: translateY(0);
-        }
-
-        .mobile-nav {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 2rem;
-        }
-
-        .mobile-nav-link {
-          font-family: var(--font-serif);
-          font-size: 2rem;
-          color: var(--color-graphite);
+        .small {
+          padding: 0.75rem 1.5rem;
+          font-size: 0.65rem;
         }
 
         @media (max-width: 992px) {
-          .desktop-nav, .desktop-only {
+          .nav-desktop {
             display: none;
-          }
-          .mobile-menu-toggle {
-            display: block;
           }
         }
       `}</style>

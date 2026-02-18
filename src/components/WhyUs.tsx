@@ -1,77 +1,102 @@
 import { motion } from 'framer-motion';
-import { Award, ShieldCheck, HeartPulse, UserCheck } from 'lucide-react';
+import { Award, ShieldCheck, Zap, Heart } from 'lucide-react';
 
-const WhyUs: React.FC = () => {
-    const items = [
-        { icon: <Award size={32} />, title: 'Alta Especialização', text: 'Equipe médica com sólida formação acadêmica e técnica.' },
-        { icon: <ShieldCheck size={32} />, title: 'Segurança Total', text: 'Protocolos rigorosos e equipamentos certificados.' },
-        { icon: <HeartPulse size={32} />, title: 'Resultados Naturais', text: 'Preservamos sua essência com harmonia e equilíbrio.' },
-        { icon: <UserCheck size={32} />, title: 'Atendimento Individual', text: 'Planos de tratamento 100% personalizados.' }
-    ];
+const WhyUsVibrant: React.FC = () => {
+  const items = [
+    {
+      icon: <Award size={40} />,
+      title: 'Excelência Médica',
+      text: 'Membros das principais sociedades brasileiras e internacionais de estética.'
+    },
+    {
+      icon: <ShieldCheck size={40} />,
+      title: 'Segurança Máxima',
+      text: 'Rigor hospitalar e insumos de primeira linha certificados pela ANVISA.'
+    },
+    {
+      icon: <Zap size={40} />,
+      title: 'Alta Tecnologia',
+      text: 'Os lasers e tecnologias mais avançados do mercado mundial.'
+    },
+    {
+      icon: <Heart size={40} />,
+      title: 'Cuidado Humano',
+      text: 'Acompanhamento pós-procedimento dedicado e personalizado.'
+    }
+  ];
 
-    return (
-        <section className="why-us">
-            <div className="container">
-                <div className="why-grid">
-                    {items.map((item, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.1 }}
-                            className="why-item"
-                        >
-                            <div className="icon-box">{item.icon}</div>
-                            <h4>{item.title}</h4>
-                            <p>{item.text}</p>
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
-            <style>{`
-        .why-us {
-          padding: 80px 0;
-          background: var(--color-nude-light);
-          border-top: 1px solid var(--color-border);
-          border-bottom: 1px solid var(--color-border);
+  return (
+    <section className="why-us-vibrant">
+      <div className="container">
+        <div className="why-grid-v">
+          {items.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.6 }}
+              className="why-item-v"
+            >
+              <div className="icon-box-v">{item.icon}</div>
+              <h4>{item.title}</h4>
+              <p>{item.text}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+      <style>{`
+        .why-us-vibrant {
+          padding: 100px 0;
+          background: var(--color-dark);
+          color: white;
         }
-        .why-grid {
+        .why-grid-v {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 3rem;
+          gap: 4rem;
         }
-        .why-item {
+        .why-item-v {
           text-align: center;
+          padding: 2rem;
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          transition: var(--transition);
         }
-        .icon-box {
-          color: var(--color-gold);
-          margin-bottom: 1.5rem;
+        .why-item-v:hover {
+          background: rgba(189, 30, 81, 0.1);
+          border-color: var(--color-primary);
+          transform: translateY(-10px);
+        }
+        .icon-box-v {
+          color: var(--color-primary);
+          margin-bottom: 2rem;
           display: flex;
           justify-content: center;
         }
-        .why-item h4 {
+        .why-item-v h4 {
+          color: white;
           font-family: var(--font-sans);
-          font-size: 0.9rem;
+          font-size: 1rem;
           text-transform: uppercase;
-          letter-spacing: 0.1em;
-          font-weight: 700;
-          margin-bottom: 0.8rem;
-          color: var(--color-graphite);
+          letter-spacing: 0.2em;
+          font-weight: 800;
+          margin-bottom: 1.5rem;
         }
-        .why-item p {
-          font-size: 0.9rem;
-          color: var(--color-text);
+        .why-item-v p {
+          color: rgba(255, 255, 255, 0.6);
+          font-size: 0.95rem;
+          line-height: 1.6;
         }
         @media (max-width: 992px) {
-          .why-grid { grid-template-columns: repeat(2, 1fr); }
+          .why-grid-v { grid-template-columns: repeat(2, 1fr); }
         }
-        @media (max-width: 500px) {
-          .why-grid { grid-template-columns: 1fr; }
+        @media (max-width: 600px) {
+          .why-grid-v { grid-template-columns: 1fr; }
         }
       `}</style>
-        </section>
-    );
+    </section>
+  );
 };
 
-export default WhyUs;
+export default WhyUsVibrant;

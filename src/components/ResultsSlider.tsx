@@ -1,121 +1,134 @@
 import { motion } from 'framer-motion';
 
 const results = [
-    {
-        title: 'Harmonização Facial',
-        desc: 'Protocolo completo para suporte estrutural e rejuvenescimento.',
-        before: 'https://images.unsplash.com/photo-1570172033936-12c1b126d4d2?q=80&w=2070&auto=format&fit=crop',
-        after: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop'
-    }
+  {
+    title: 'Harmonização de Perfil',
+    desc: 'Equilíbrio e definição da linha da mandíbula com ácido hialurônico.',
+    before: 'https://images.unsplash.com/photo-1570172033936-12c1b126d4d2?q=80&w=2070&auto=format&fit=crop',
+    after: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop'
+  }
 ];
 
-const ResultsSlider: React.FC = () => {
-    return (
-        <section id="resultados" className="results-slider">
-            <div className="container">
-                <div className="section-header">
-                    <span className="subtitle">Galeria de Resultados</span>
-                    <h2>Transformações <span className="gold-italic">Reais</span></h2>
-                    <div className="gold-line"></div>
+const ResultsVibrant: React.FC = () => {
+  return (
+    <section id="resultados" className="results-vibrant">
+      <div className="container">
+        <div className="section-header">
+          <span className="badge">GALERIA DE TRANSFORMAÇÕES</span>
+          <h2>A Ciência da <span className="gradient-text-v">Mudança.</span></h2>
+          <div className="vibrant-line"></div>
+        </div>
+
+        <div className="res-main-v">
+          {results.map((r, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="res-item-v"
+            >
+              <div className="comparison-v">
+                <div className="img-box-v">
+                  <img src={r.before} alt="Antes" />
+                  <div className="tag-v">ANTES</div>
                 </div>
-
-                <div className="res-grid">
-                    {results.map((r, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            className="res-card"
-                        >
-                            <div className="res-images">
-                                <div className="side">
-                                    <span className="side-label">Antes</span>
-                                    <img src={r.before} alt="Antes" />
-                                </div>
-                                <div className="side">
-                                    <span className="side-label">Depois</span>
-                                    <img src={r.after} alt="Depois" />
-                                </div>
-                            </div>
-                            <div className="res-content">
-                                <h3>{r.title}</h3>
-                                <p>{r.desc}</p>
-                            </div>
-                        </motion.div>
-                    ))}
+                <div className="img-box-v">
+                  <img src={r.after} alt="Depois" />
+                  <div className="tag-v gold">DEPOIS</div>
                 </div>
+              </div>
+              <div className="res-info-v">
+                <h3>{r.title}</h3>
+                <p>{r.desc}</p>
+                <div className="cta-results">
+                  <button className="btn-vibrant">Quero este resultado</button>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
 
-                <p className="legal-footer">* Resultados individuais podem variar. Procedimento realizado por médicos especialistas.</p>
-            </div>
-
-            <style>{`
-        .results-slider {
+      <style>{`
+        .results-vibrant {
           padding: var(--section-padding);
-          background-color: var(--color-off-white);
+          background-color: var(--color-bg-soft);
         }
 
-        .res-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          max-width: 1000px;
+        .results-vibrant .gradient-text-v {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-style: italic;
+        }
+
+        .res-main-v {
+          max-width: 1100px;
           margin: 0 auto;
         }
 
-        .res-images {
+        .comparison-v {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 1rem;
-          margin-bottom: 2.5rem;
+          gap: 1.5rem;
+          margin-bottom: 4rem;
         }
 
-        .side {
+        .img-box-v {
           position: relative;
-          height: 600px;
+          height: 650px;
           overflow: hidden;
+          box-shadow: 20px 20px 60px rgba(0,0,0,0.1);
         }
 
-        .side img {
+        .img-box-v img {
           width: 100%;
           height: 100%;
           object-fit: cover;
         }
 
-        .side-label {
+        .tag-v {
           position: absolute;
-          top: 20px;
-          left: 20px;
-          background: rgba(0,0,0,0.6);
+          top: 30px;
+          left: 30px;
+          background: var(--color-dark);
           color: white;
-          padding: 5px 15px;
+          padding: 8px 18px;
           font-size: 0.7rem;
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          z-index: 10;
+          font-weight: 800;
+          letter-spacing: 0.2em;
         }
 
-        .res-content {
+        .tag-v.gold {
+          background: var(--color-primary);
+        }
+
+        .res-info-v {
           text-align: center;
         }
 
-        .res-content h3 {
-          font-size: 2rem;
-          margin-bottom: 0.5rem;
+        .res-info-v h3 {
+          font-size: 2.5rem;
+          margin-bottom: 1rem;
         }
 
-        .legal-footer {
-          margin-top: 5rem;
-          text-align: center;
-          font-size: 0.8rem;
-          opacity: 0.5;
+        .res-info-v p {
+          font-size: 1.25rem;
+          margin-bottom: 3rem;
+        }
+
+        .cta-results {
+            margin-top: 2rem;
         }
 
         @media (max-width: 768px) {
-          .side { height: 400px; }
+          .comparison-v { grid-template-columns: 1fr; }
+          .img-box-v { height: 400px; }
         }
       `}</style>
-        </section>
-    );
+    </section>
+  );
 };
 
-export default ResultsSlider;
+export default ResultsVibrant;

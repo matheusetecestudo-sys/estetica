@@ -1,25 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 
 :root {
-  /* Feminine Premium Palette */
+  /* Vibrant Luxury Palette - "Royal Radiant Rose" */
+  --color-primary: #BD1E51;
+  /* Vibrant Magenta/Berry */
+  --color-primary-light: #E84D8A;
+  --color-gold: #D4AF37;
+  /* Saturated Gold */
+  --color-gold-light: #F9E29C;
   --color-white: #FFFFFF;
-  --color-rose-white: #FFF9F9;
-  --color-soft-pink: #FDE2E4;
-  --color-rose-gold: #D4A373;
-  --color-dusty-rose: #E5B1B1;
-  --color-champagne: #F5EBE0;
-  --color-graphite: #4A4444;
-  --color-text: #6B6060;
-  --color-border: #F0E6E6;
+  --color-bg-soft: #FFF5F6;
+  --color-dark: #121212;
+  --color-text: #2D2D2D;
+  --color-text-light: #666666;
 
   /* Typography */
-  --font-serif: 'Cormorant Garamond', serif;
-  --font-sans: 'Montserrat', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
 
-  /* Utilities */
-  --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-  --shadow-soft: 0 10px 40px rgba(229, 177, 177, 0.1);
-  --section-padding: 120px 0;
+  /* Layout */
+  --section-padding: 140px 0;
+  --container-max-width: 1300px;
+  --transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  --shadow-premium: 0 20px 50px rgba(189, 30, 81, 0.15);
 }
 
 * {
@@ -36,7 +39,7 @@ body {
   background-color: var(--color-white);
   color: var(--color-text);
   font-family: var(--font-sans);
-  line-height: 1.7;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -45,110 +48,111 @@ h2,
 h3,
 h4 {
   font-family: var(--font-serif);
-  color: var(--color-graphite);
-  line-height: 1.2;
-  font-weight: 500;
+  color: var(--color-dark);
+  line-height: 1.1;
+  font-weight: 700;
 }
 
 p {
-  font-size: 1.05rem;
-  color: var(--color-text);
-  font-weight: 300;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-  transition: var(--transition);
-}
-
-img {
-  max-width: 100%;
-  display: block;
+  font-size: 1.1rem;
+  color: var(--color-text-light);
+  font-weight: 400;
 }
 
 .container {
   width: 90%;
-  max-width: 1280px;
+  max-width: var(--container-max-width);
   margin: 0 auto;
 }
 
-/* Feminine Luxury Buttons */
-.btn-rose {
-  display: inline-block;
-  padding: 1.2rem 3rem;
-  background-color: var(--color-dusty-rose);
+/* Premium Buttons - High Contrast & Vibrancy */
+.btn-vibrant {
+  padding: 1.25rem 3.5rem;
+  background-color: var(--color-primary);
   color: white;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-size: 0.8rem;
-  font-weight: 600;
-  border-radius: 50px;
-  /* Softer shape */
-  border: 1px solid var(--color-dusty-rose);
+  letter-spacing: 0.15em;
+  border-radius: 4px;
+  /* Professional square edge vs pill */
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-vibrant:hover {
+  background-color: var(--color-dark);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline-vibrant {
+  padding: 1.25rem 3.5rem;
+  background-color: transparent;
+  color: var(--color-primary);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border-radius: 4px;
+  border: 2px solid var(--color-primary);
   cursor: pointer;
   transition: var(--transition);
 }
 
-.btn-rose:hover {
-  background-color: transparent;
-  color: var(--color-dusty-rose);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(229, 177, 177, 0.3);
-}
-
-.btn-outline-rose {
-  display: inline-block;
-  padding: 1.2rem 3rem;
-  background-color: transparent;
-  color: var(--color-dusty-rose);
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-size: 0.8rem;
-  font-weight: 600;
-  border-radius: 50px;
-  border: 1px solid var(--color-dusty-rose);
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.btn-outline-rose:hover {
-  background-color: var(--color-dusty-rose);
+.btn-outline-vibrant:hover {
+  background-color: var(--color-primary);
   color: white;
-  transform: translateY(-3px);
+  transform: translateY(-5px);
 }
 
-/* Custom Section Header */
+/* Section Styling */
 .section-header {
   text-align: center;
-  margin-bottom: 6rem;
+  margin-bottom: 80px;
 }
 
-.section-header .subtitle {
+.section-header .badge {
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.4em;
   text-transform: uppercase;
-  letter-spacing: 0.5em;
-  color: var(--color-dusty-rose);
-  font-size: 0.8rem;
-  font-weight: 600;
   display: block;
   margin-bottom: 1.5rem;
 }
 
 .section-header h2 {
-  font-size: 3.8rem;
-  font-style: italic;
-  /* Softer, more elegant touch */
+  font-size: 4rem;
+  margin-bottom: 2rem;
 }
 
-.rose-divider {
-  width: 80px;
-  height: 1px;
-  background-color: var(--color-dusty-rose);
-  margin: 2.5rem auto 0;
-  opacity: 0.5;
+.vibrant-line {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-gold) 100%);
+  margin: 0 auto;
+}
+
+/* Glassmorphism Classes */
+.glass-box {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: var(--shadow-premium);
 }
 
 @media (max-width: 768px) {
+  :root {
+    --section-padding: 80px 0;
+  }
+
   .section-header h2 {
     font-size: 2.8rem;
   }

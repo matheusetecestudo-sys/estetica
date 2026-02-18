@@ -1,110 +1,113 @@
 import { motion } from 'framer-motion';
 
 const testimonials = [
-    {
-        author: "M. Silveira",
-        city: "São Paulo, SP",
-        text: "A Dra. Isabella é impecável. Fiz harmonização e o resultado ficou super natural. O atendimento de toda a equipe é de primeiro mundo."
-    },
-    {
-        author: "A. Cavalcanti",
-        city: "Curitiba, PR",
-        text: "Ambiente maravilhoso e tecnologia de ponta. Me senti segura em cada etapa. Recomendo de olhos fechados para quem busca qualidade."
-    }
+  {
+    author: "CAROLINE MENDES",
+    city: "São Paulo, SP",
+    text: "O resultado da minha harmonização superou todas as expectativas. Não é apenas estética, é elevar a autoestima a um nível que eu não conhecia."
+  },
+  {
+    author: "JULIANA FERREIRA",
+    city: "Rio de Janeiro, RJ",
+    text: "Espaço impecável, atendimento diferenciado e resultados extremamente naturais. É a melhor clínica que já visitei no Brasil."
+  }
 ];
 
-const TestimonialsClean: React.FC = () => {
-    return (
-        <section className="test-clean">
-            <div className="container">
-                <div className="section-header">
-                    <span className="subtitle">Depoimentos</span>
-                    <h2>A Opinião de <span className="gold-italic">Nossos Pacientes</span></h2>
-                    <div className="gold-line"></div>
-                </div>
+const TestimonialsVibrant: React.FC = () => {
+  return (
+    <section className="test-v">
+      <div className="container">
+        <div className="section-header">
+          <span className="badge">RECONHECIMENTO</span>
+          <h2>A Voz da <span className="gradient-text-v">Satisfação.</span></h2>
+          <div className="vibrant-line"></div>
+        </div>
 
-                <div className="test-grid">
-                    {testimonials.map((t, idx) => (
-                        <motion.div
-                            key={idx}
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            className="test-card"
-                        >
-                            <div className="stars">★★★★★</div>
-                            <p>"{t.text}"</p>
-                            <div className="meta">
-                                <strong>{t.author}</strong>
-                                <span>{t.city}</span>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
+        <div className="test-grid-v">
+          {testimonials.map((t, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, x: idx % 2 === 0 ? -30 : 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="test-card-v glass-box"
+            >
+              <div className="v-stars">★★★★★</div>
+              <p className="v-quote">"{t.text}"</p>
+              <div className="v-meta">
+                <strong>{t.author}</strong>
+                <span>{t.city}</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
 
-            <style>{`
-        .test-clean {
+      <style>{`
+        .test-v {
           padding: var(--section-padding);
-          background: white;
+          background: #fff;
         }
 
-        .test-grid {
+        .gradient-text-v {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-style: italic;
+        }
+
+        .test-grid-v {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 3rem;
-          max-width: 1000px;
-          margin: 0 auto;
+          gap: 4rem;
         }
 
-        .test-card {
-          padding: 4rem 3rem;
-          background: var(--color-off-white);
-          border: 1px solid var(--color-border);
+        .test-card-v {
+          padding: 5rem 4rem;
+          border-radius: 4px;
           text-align: center;
         }
 
-        .stars {
+        .v-stars {
           color: var(--color-gold);
-          letter-spacing: 0.2em;
-          margin-bottom: 2rem;
-          font-size: 0.8rem;
-        }
-
-        .test-card p {
-          font-family: var(--font-serif);
-          font-size: 1.4rem;
-          font-style: italic;
-          color: var(--color-graphite);
+          letter-spacing: 0.3em;
           margin-bottom: 2.5rem;
-          line-height: 1.5;
+          font-size: 0.9rem;
         }
 
-        .meta {
+        .v-quote {
+          font-family: var(--font-serif);
+          font-size: 1.8rem;
+          line-height: 1.5;
+          color: var(--color-dark);
+          margin-bottom: 3rem;
+          font-weight: 500;
+        }
+
+        .v-meta {
           display: flex;
           flex-direction: column;
+          gap: 5px;
         }
 
-        .meta strong {
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          font-size: 0.8rem;
-          color: var(--color-graphite);
+        .v-meta strong {
+          font-size: 0.85rem;
+          letter-spacing: 0.2em;
+          color: var(--color-primary);
         }
 
-        .meta span {
+        .v-meta span {
           font-size: 0.75rem;
-          color: var(--color-text);
-          opacity: 0.6;
-          margin-top: 0.3rem;
+          color: var(--color-text-light);
         }
 
-        @media (max-width: 768px) {
-          .test-grid { grid-template-columns: 1fr; }
+        @media (max-width: 912px) {
+          .test-grid-v { grid-template-columns: 1fr; }
+          .test-card-v { padding: 3rem; }
         }
       `}</style>
-        </section>
-    );
+    </section>
+  );
 };
 
-export default TestimonialsClean;
+export default TestimonialsVibrant;

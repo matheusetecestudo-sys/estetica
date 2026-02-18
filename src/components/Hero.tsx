@@ -2,194 +2,188 @@ import { motion } from 'framer-motion';
 
 const Hero: React.FC = () => {
   return (
-    <section className="hero-fem">
-      <div className="container hero-grid-fem">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2 }}
-          className="hero-image-block"
-        >
-          <div className="image-luxury-frame">
-            <img
-              src="https://images.unsplash.com/photo-1596462502278-27bfac44221d?q=80&w=2070&auto=format&fit=crop"
-              alt="Estética Feminina"
-            />
-            <div className="rose-overlay-card">
-              <span className="stars">★★★★★</span>
-              <p>Beleza com naturalidade</p>
+    <section className="hero-vibrant">
+      <div className="container">
+        <div className="hero-flex">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="hero-content"
+          >
+            <span className="badge-vibrant">ESTÉTICA MÉDICA AVANÇADA</span>
+            <h1>A ciência de ser <br /> <span className="gradient-text">Extraordinária.</span></h1>
+            <p>
+              Protocolos de luxo desenhados para mulheres que não aceitam o comum.
+              Harmonização facial com precisão cirúrgica e resultados que impõem presença.
+            </p>
+            <div className="hero-btns-vibrant">
+              <button className="btn-vibrant">Agende sua Experiência</button>
+              <button className="btn-outline-vibrant">Ver Protocolos</button>
             </div>
-          </div>
-        </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="hero-text-fem"
-        >
-          <span className="tag-line">ARQUITETURA DA BELEZA</span>
-          <h1>Você, na sua <br /> <span className="rose-italic">melhor versão.</span></h1>
-          <p>
-            Protocolos exclusivos de harmonização facial e tratamentos corporais
-            desenhados para realçar o que você tem de mais único.
-          </p>
-          <div className="hero-actions-fem">
-            <a href="#contato" className="btn-rose">Agendar Avaliação</a>
-            <a href="#procedimentos" className="btn-outline-rose">Conhecer</a>
-          </div>
-
-          <div className="social-proof-fem">
-            <div className="avatars">
-              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop" alt="User" />
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop" alt="User" />
-              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=150&auto=format&fit=crop" alt="User" />
-              <div className="plus-others">+1k</div>
+            <div className="trust-badges">
+              <div className="trust-item">
+                <strong>+5.000</strong>
+                <span>Pacientes Satisfeitas</span>
+              </div>
+              <div className="trust-item">
+                <strong>Especialista</strong>
+                <span>Títulos Internacionais</span>
+              </div>
             </div>
-            <p>Mais de 1.000 vidas transformadas este ano</p>
-          </div>
-        </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 1.2, type: 'spring' }}
+            className="hero-visual"
+          >
+            <div className="main-image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1596462502278-27bfac44221d?q=80&w=2070&auto=format&fit=crop"
+                alt="Mulher Empoderada"
+                className="main-hero-img"
+              />
+              <div className="floating-card glass-box">
+                <span className="rating">★★★★★</span>
+                <p>Referência em resultados naturais em SP</p>
+              </div>
+            </div>
+            <div className="decoration-blob"></div>
+          </motion.div>
+        </div>
       </div>
 
       <style>{`
-        .hero-fem {
+        .hero-vibrant {
           min-height: 100vh;
-          background: var(--color-rose-white);
+          padding-top: 150px;
+          padding-bottom: 100px;
+          background: radial-gradient(circle at top right, rgba(189, 30, 81, 0.05) 0%, #fff 60%);
           display: flex;
           align-items: center;
-          padding-top: 120px;
+          position: relative;
           overflow: hidden;
         }
 
-        .hero-grid-fem {
+        .hero-flex {
           display: grid;
-          grid-template-columns: 1fr 1.1fr;
-          gap: 6rem;
+          grid-template-columns: 1.1fr 0.9fr;
+          gap: 4rem;
           align-items: center;
         }
 
-        .tag-line {
-          display: block;
+        .badge-vibrant {
+          display: inline-block;
+          color: var(--color-primary);
+          font-weight: 800;
+          letter-spacing: 0.3em;
           font-size: 0.85rem;
-          letter-spacing: 0.4em;
-          color: var(--color-dusty-rose);
-          font-weight: 600;
           margin-bottom: 2rem;
+          background: rgba(189, 30, 81, 0.1);
+          padding: 8px 20px;
+          border-radius: 4px;
         }
 
-        .hero-text-fem h1 {
-          font-size: clamp(3.5rem, 8vw, 5.5rem);
-          line-height: 1;
+        .hero-content h1 {
+          font-size: clamp(3.5rem, 8vw, 6rem);
           margin-bottom: 2.5rem;
-          font-weight: 400;
         }
 
-        .rose-italic {
-          color: var(--color-dusty-rose);
+        .gradient-text {
+          background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 60%, var(--color-gold) 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
           font-style: italic;
         }
 
-        .hero-text-fem p {
-          font-size: 1.2rem;
+        .hero-content p {
+          font-size: 1.35rem;
+          max-width: 600px;
+          margin-bottom: 4rem;
           color: var(--color-text);
-          margin-bottom: 3.5rem;
-          max-width: 550px;
         }
 
-        .hero-actions-fem {
+        .hero-btns-vibrant {
           display: flex;
           gap: 2rem;
           margin-bottom: 5rem;
         }
 
-        .image-luxury-frame {
+        .trust-badges {
+          display: flex;
+          gap: 4rem;
+          border-top: 1px solid #eee;
+          padding-top: 3rem;
+        }
+
+        .trust-item strong {
+          display: block;
+          font-size: 1.8rem;
+          color: var(--color-primary);
+          font-family: var(--font-serif);
+        }
+
+        .trust-item span {
+          font-size: 0.85rem;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          font-weight: 600;
+        }
+
+        .hero-visual {
           position: relative;
-          padding-right: 40px;
-          padding-bottom: 40px;
         }
 
-        .image-luxury-frame img {
+        .main-image-wrapper {
+          position: relative;
+          z-index: 2;
+        }
+
+        .main-hero-img {
           width: 100%;
-          height: 700px;
+          height: 750px;
           object-fit: cover;
-          border-radius: 10px;
-          box-shadow: 20px 20px 60px rgba(229, 177, 177, 0.15);
+          border-radius: 4px;
+          box-shadow: 30px 30px 0px var(--color-bg-soft);
         }
 
-        .rose-overlay-card {
+        .floating-card {
           position: absolute;
-          bottom: 0;
-          right: 0;
-          background: white;
+          bottom: 50px;
+          left: -40px;
           padding: 2.5rem;
-          border-radius: 10px;
-          box-shadow: -10px -10px 40px rgba(229, 177, 177, 0.2);
+          border-radius: 4px;
+          max-width: 250px;
           text-align: center;
         }
 
-        .stars {
-          color: #FFD700;
-          font-size: 0.9rem;
+        .rating {
+          color: var(--color-gold);
           display: block;
-          margin-bottom: 0.8rem;
+          margin-bottom: 1rem;
           letter-spacing: 0.2em;
         }
 
-        .rose-overlay-card p {
-          font-size: 0.85rem;
-          text-transform: uppercase;
-          letter-spacing: 0.15em;
-          font-weight: 700;
-          color: var(--color-graphite);
-        }
-
-        .social-proof-fem {
-          display: flex;
-          align-items: center;
-          gap: 1.5rem;
-        }
-
-        .avatars {
-          display: flex;
-          align-items: center;
-        }
-
-        .avatars img {
-          width: 45px;
-          height: 45px;
+        .decoration-blob {
+          position: absolute;
+          top: -10%;
+          right: -20%;
+          width: 600px;
+          height: 600px;
+          background: rgba(189, 30, 81, 0.05);
+          filter: blur(100px);
           border-radius: 50%;
-          border: 3px solid white;
-          margin-left: -15px;
-        }
-
-        .avatars img:first-child { margin-left: 0; }
-
-        .plus-others {
-          width: 45px;
-          height: 45px;
-          border-radius: 50%;
-          background: var(--color-soft-pink);
-          color: var(--color-dusty-rose);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 0.8rem;
-          font-weight: 700;
-          border: 3px solid white;
-          margin-left: -15px;
-        }
-
-        .social-proof-fem p {
-          font-size: 0.85rem;
-          margin-bottom: 0;
-          opacity: 0.7;
+          z-index: 1;
         }
 
         @media (max-width: 1200px) {
-          .hero-grid-fem { grid-template-columns: 1fr; gap: 4rem; text-align: center; }
-          .hero-text-fem p, .hero-actions-fem, .social-proof-fem { margin-left: auto; margin-right: auto; justify-content: center; }
-          .image-luxury-frame { max-width: 600px; margin: 0 auto; padding-right: 0; }
-          .image-luxury-frame img { height: 500px; }
+          .hero-flex { grid-template-columns: 1fr; text-align: center; }
+          .hero-content p, .hero-btns-vibrant, .trust-badges { margin-left: auto; margin-right: auto; justify-content: center; }
+          .main-hero-img { height: 500px; }
+          .floating-card { left: 50%; transform: translateX(-50%); bottom: -30px; }
         }
       `}</style>
     </section>

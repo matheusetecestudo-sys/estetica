@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Phone, MessageCircle, Menu, X } from 'lucide-react';
+import { MessageCircle, Menu, X, Instagram } from 'lucide-react';
 
 const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -12,26 +12,29 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <header className={`navbar-fem ${scrolled ? 'scrolled' : ''}`}>
       <div className="container nav-content">
         <div className="nav-logo">
           <a href="/">
-            <span className="brand-name">CLÍNICA <span className="gold">ESTÉTICA</span></span>
-            <span className="brand-sub">DRA. ISABELLA PREMIUM</span>
+            <span className="brand-name">ESSENCE <span className="rose-text">ESTÉTICA</span></span>
+            <span className="brand-sub">BELEZA & BEM-ESTAR</span>
           </a>
         </div>
 
         <nav className="nav-links desktop-only">
           <a href="#procedimentos">Tratamentos</a>
-          <a href="#clinica">A Clínica</a>
+          <a href="#clinica">O Conceito</a>
           <a href="#resultados">Resultados</a>
           <a href="#contato">Contato</a>
         </nav>
 
         <div className="nav-actions">
-          <a href="https://wa.me/5511999999999" target="_blank" className="whatsapp-btn desktop-only">
-            <MessageCircle size={20} />
-            <span>Agendamento</span>
+          <a href="#" className="social-icon desktop-only">
+            <Instagram size={20} />
+          </a>
+          <a href="https://wa.me/5511999999999" target="_blank" className="cta-rose-pill desktop-only">
+            <MessageCircle size={18} />
+            <span>Agendar Consulta</span>
           </a>
           <button className="mobile-toggle" onClick={() => setMobileMenu(!mobileMenu)}>
             {mobileMenu ? <X size={24} /> : <Menu size={24} />}
@@ -39,35 +42,32 @@ const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
-      <div className={`mobile-nav-overlay ${mobileMenu ? 'active' : ''}`}>
+      <div className={`mobile-nav-fem ${mobileMenu ? 'active' : ''}`}>
         <nav>
           <a href="#procedimentos" onClick={() => setMobileMenu(false)}>Tratamentos</a>
-          <a href="#clinica" onClick={() => setMobileMenu(false)}>A Clínica</a>
+          <a href="#clinica" onClick={() => setMobileMenu(false)}>O Conceito</a>
           <a href="#resultados" onClick={() => setMobileMenu(false)}>Resultados</a>
           <a href="#contato" onClick={() => setMobileMenu(false)}>Contato</a>
-          <a href="https://wa.me/5511999999999" className="mobile-cta">Agendar Consulta</a>
+          <a href="https://wa.me/5511999999999" className="mobile-cta-rose">Falar no WhatsApp</a>
         </nav>
       </div>
 
       <style>{`
-        .navbar {
+        .navbar-fem {
           position: fixed;
           top: 0;
           left: 0;
           width: 100%;
-          padding: 1.5rem 0;
+          padding: 2rem 0;
           z-index: 1000;
           transition: var(--transition);
-          background: transparent;
         }
 
-        .navbar.scrolled {
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(10px);
-          padding: 1rem 0;
-          box-shadow: 0 4px 30px rgba(0,0,0,0.03);
-          border-bottom: 1px solid var(--color-border);
+        .navbar-fem.scrolled {
+          background: rgba(255, 255, 255, 0.9);
+          backdrop-filter: blur(15px);
+          padding: 1.2rem 0;
+          box-shadow: 0 4px 30px rgba(229, 177, 177, 0.1);
         }
 
         .nav-content {
@@ -76,75 +76,72 @@ const Header: React.FC = () => {
           align-items: center;
         }
 
-        .nav-logo a {
-          display: flex;
-          flex-direction: column;
-        }
-
         .brand-name {
           font-family: var(--font-serif);
-          font-size: 1.5rem;
+          font-size: 1.8rem;
           letter-spacing: 0.1em;
-          font-weight: 600;
           color: var(--color-graphite);
         }
 
-        .brand-name .gold {
-          color: var(--color-gold);
+        .rose-text {
+          color: var(--color-dusty-rose);
+          font-style: italic;
         }
 
         .brand-sub {
-          font-size: 0.6rem;
-          letter-spacing: 0.4em;
+          display: block;
+          font-size: 0.65rem;
+          letter-spacing: 0.5em;
           color: var(--color-text);
           margin-top: 0.2rem;
+          opacity: 0.8;
           font-weight: 500;
         }
 
         .nav-links {
           display: flex;
-          gap: 2.5rem;
+          gap: 3rem;
         }
 
         .nav-links a {
-          font-size: 0.8rem;
+          font-size: 0.75rem;
           text-transform: uppercase;
-          letter-spacing: 0.15em;
+          letter-spacing: 0.2em;
           font-weight: 600;
           color: var(--color-graphite);
-          position: relative;
+          opacity: 0.8;
         }
 
-        .nav-links a::after {
-          content: '';
-          position: absolute;
-          bottom: -5px;
-          left: 0;
-          width: 0;
-          height: 1px;
-          background: var(--color-gold);
-          transition: var(--transition);
+        .nav-links a:hover {
+          color: var(--color-dusty-rose);
+          opacity: 1;
         }
 
-        .nav-links a:hover::after {
-          width: 100%;
-        }
-
-        .whatsapp-btn {
+        .cta-rose-pill {
           display: flex;
           align-items: center;
           gap: 0.8rem;
-          background: var(--color-gold);
+          background: var(--color-dusty-rose);
           color: white;
-          padding: 0.7rem 1.5rem;
-          border-radius: 4px;
-          font-size: 0.85rem;
+          padding: 0.8rem 1.8rem;
+          border-radius: 50px;
+          font-size: 0.8rem;
           font-weight: 600;
+          transition: var(--transition);
         }
 
-        .whatsapp-btn:hover {
-          background: var(--color-gold-dark);
+        .cta-rose-pill:hover {
           transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(229, 177, 177, 0.4);
+        }
+
+        .social-icon {
+          color: var(--color-text);
+          margin-right: 1.5rem;
+        }
+
+        .social-icon:hover {
+          color: var(--color-dusty-rose);
         }
 
         .mobile-toggle {
@@ -152,46 +149,45 @@ const Header: React.FC = () => {
           background: none;
           border: none;
           color: var(--color-graphite);
-          cursor: pointer;
         }
 
-        .mobile-nav-overlay {
+        .mobile-nav-fem {
           position: fixed;
           top: 0;
           left: 0;
           width: 100%;
           height: 100vh;
-          background: var(--color-white);
+          background: var(--color-rose-white);
           z-index: 999;
           display: flex;
           align-items: center;
           justify-content: center;
-          transform: translateX(100%);
+          transform: translateY(-100%);
           transition: var(--transition);
         }
 
-        .mobile-nav-overlay.active {
-          transform: translateX(0);
+        .mobile-nav-fem.active {
+          transform: translateY(0);
         }
 
-        .mobile-nav-overlay nav {
+        .mobile-nav-fem nav {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 2rem;
+          gap: 2.5rem;
         }
 
-        .mobile-nav-overlay a {
-          font-size: 1.5rem;
+        .mobile-nav-fem a {
+          font-size: 1.8rem;
           font-family: var(--font-serif);
           color: var(--color-graphite);
         }
 
-        .mobile-cta {
-          margin-top: 1rem;
-          background: var(--color-gold);
+        .mobile-cta-rose {
+          background: var(--color-dusty-rose);
           color: white !important;
-          padding: 1rem 2rem;
+          padding: 1.2rem 2.5rem;
+          border-radius: 50px;
           font-size: 1rem !important;
           font-family: var(--font-sans) !important;
           font-weight: 600;

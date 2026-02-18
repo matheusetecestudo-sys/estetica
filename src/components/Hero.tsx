@@ -2,193 +2,183 @@ import { motion } from 'framer-motion';
 
 const Hero: React.FC = () => {
   return (
-    <section className="hero">
-      <div className="hero-video-container">
-        <div className="hero-overlay"></div>
-        {/* Usando uma imagem de alta qualidade com efeito de zoom suave para simular vídeo cinematográfico */}
-        <img
-          src="https://images.unsplash.com/photo-1596462502278-27bfac44221d?q=80&w=2070&auto=format&fit=crop"
-          alt="Clínica de Luxo"
-          className="hero-media"
-        />
+    <section className="hero-clean">
+      <div className="container hero-grid">
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="hero-text"
+        >
+          <span className="hero-tag">EXCLUSIVIDADE & SEGURANÇA MÉDICA</span>
+          <h1>Realçando sua <br /> <span className="gold-italic">beleza natural</span> com sofisticação.</h1>
+          <p>
+            Protocolos avançados de harmonização e rejuvenescimento facial
+            conduzidos por especialistas, em um ambiente planejado para o seu conforto absoluto.
+          </p>
+          <div className="hero-btns">
+            <a href="#contato" className="btn-gold">Agendar Avaliação</a>
+            <a href="#procedimentos" className="btn-outline">Ver Tratamentos</a>
+          </div>
+
+          <div className="hero-stats">
+            <div className="stat-item">
+              <span className="stat-num">12k+</span>
+              <span className="stat-label">Procedimentos</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-num">15+</span>
+              <span className="stat-label">Anos de Experiência</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-num">MD</span>
+              <span className="stat-label">Título de Especialista</span>
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+          className="hero-image-wrapper"
+        >
+          <div className="image-card">
+            <img
+              src="https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=2074&auto=format&fit=crop"
+              alt="Estética de Luxo"
+            />
+            <div className="floating-badge">
+              <span className="gold">★ ★ ★ ★ ★</span>
+              <p>Referência em São Paulo</p>
+            </div>
+          </div>
+        </motion.div>
       </div>
-
-      <div className="container hero-content">
-        <div className="hero-text-wrapper">
-          <motion.span
-            initial={{ opacity: 0, letterSpacing: '1em' }}
-            animate={{ opacity: 1, letterSpacing: '0.4em' }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
-            className="hero-tagline"
-          >
-            A CIÊNCIA DO REJUVENESCIMENTO
-          </motion.span>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-          >
-            Beleza que <br />
-            <span className="gold-text italic">impõe presença.</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1 }}
-          >
-            Protocolos avançados e exclusivos para quem não aceita nada menos que a excelência médica.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.5 }}
-            className="hero-actions"
-          >
-            <button className="btn-luxury primary">Agendar Avaliação</button>
-            <button className="btn-luxury secondary">Falar no WhatsApp</button>
-          </motion.div>
-        </div>
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="scroll-indicator"
-      >
-        <div className="mouse">
-          <div className="wheel"></div>
-        </div>
-      </motion.div>
 
       <style>{`
-        .hero {
-          position: relative;
-          height: 100vh;
-          width: 100%;
+        .hero-clean {
+          min-height: 100vh;
           display: flex;
           align-items: center;
+          padding-top: 100px;
+          background: linear-gradient(135deg, #fff 0%, #fdfbf8 100%);
           overflow: hidden;
-          background-color: var(--color-black);
         }
 
-        .hero-video-container {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          z-index: 0;
+        .hero-grid {
+          display: grid;
+          grid-template-columns: 1.1fr 0.9fr;
+          gap: 5rem;
+          align-items: center;
         }
 
-        .hero-media {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          filter: brightness(0.4) grayscale(20%);
-          transform: scale(1.1);
-          animation: slowZoom 20s infinite alternate;
-        }
-
-        @keyframes slowZoom {
-          from { transform: scale(1); }
-          to { transform: scale(1.1); }
-        }
-
-        .hero-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: radial-gradient(circle at center, transparent 0%, rgba(11, 11, 13, 0.8) 100%);
-          z-index: 1;
-        }
-
-        .hero-content {
-          position: relative;
-          z-index: 2;
-        }
-
-        .hero-text-wrapper {
-          max-width: 900px;
-        }
-
-        .hero-tagline {
-          font-family: var(--font-sans);
-          font-size: 0.8rem;
-          color: var(--color-nude);
+        .hero-tag {
           display: block;
+          font-size: 0.8rem;
+          letter-spacing: 0.3em;
+          color: var(--color-gold);
+          font-weight: 600;
           margin-bottom: 2rem;
-          font-weight: 500;
         }
 
-        .hero h1 {
-          font-size: clamp(4rem, 10vw, 8rem);
-          margin-bottom: 2rem;
-          line-height: 0.95;
+        .hero-text h1 {
+          font-size: clamp(3rem, 6vw, 4.5rem);
+          line-height: 1.1;
+          margin-bottom: 2.5rem;
         }
 
-        .italic {
+        .gold-italic {
+          color: var(--color-gold);
           font-style: italic;
         }
 
-        .hero p {
-          font-size: 1.4rem;
-          margin-bottom: 4rem;
-          max-width: 600px;
-          color: var(--color-white-warm);
+        .hero-text p {
+          font-size: 1.25rem;
+          margin-bottom: 3.5rem;
+          max-width: 580px;
+          color: var(--color-text);
+        }
+
+        .hero-btns {
+          display: flex;
+          gap: 2rem;
+          margin-bottom: 5rem;
+        }
+
+        .hero-stats {
+          display: flex;
+          gap: 3.5rem;
+          border-top: 1px solid var(--color-border);
+          padding-top: 2.5rem;
+        }
+
+        .stat-num {
+          display: block;
+          font-family: var(--font-serif);
+          font-size: 2rem;
+          color: var(--color-gold);
+          font-weight: 600;
+        }
+
+        .stat-label {
+          font-size: 0.75rem;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: var(--color-text);
           opacity: 0.7;
         }
 
-        .hero-actions {
-          display: flex;
-          gap: 2rem;
+        .hero-image-wrapper {
+          position: relative;
         }
 
-        .scroll-indicator {
+        .image-card {
+          position: relative;
+          padding: 1rem;
+          background: white;
+          box-shadow: 0 40px 80px rgba(0,0,0,0.08);
+          border-radius: 4px;
+        }
+
+        .image-card img {
+          width: 100%;
+          height: 650px;
+          object-fit: cover;
+          border-radius: 2px;
+        }
+
+        .floating-badge {
           position: absolute;
           bottom: 40px;
-          left: 50%;
-          transform: translateX(-50%);
-          z-index: 2;
+          right: -30px;
+          background: var(--color-graphite);
+          color: white;
+          padding: 1.5rem 2rem;
+          border-radius: 4px;
+          text-align: center;
+          box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
 
-        .mouse {
-          width: 24px;
-          height: 40px;
-          border: 1px solid rgba(214, 194, 176, 0.3);
-          border-radius: 20px;
-          display: flex;
-          justify-content: center;
-          padding-top: 8px;
+        .floating-badge .gold {
+          color: var(--color-gold);
+          font-size: 0.8rem;
+          display: block;
+          margin-bottom: 0.5rem;
         }
 
-        .wheel {
-          width: 2px;
-          height: 6px;
-          background: var(--color-gold-static);
-          border-radius: 1px;
-          animation: scrollWheel 2s infinite;
+        .floating-badge p {
+          font-size: 0.75rem;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: white;
         }
 
-        @keyframes scrollWheel {
-          0% { opacity: 0; transform: translateY(0); }
-          50% { opacity: 1; transform: translateY(6px); }
-          100% { opacity: 0; transform: translateY(12px); }
-        }
-
-        @media (max-width: 768px) {
-          .hero-actions {
-            flex-direction: column;
-            width: 100%;
-          }
-          .hero h1 {
-            font-size: 3.5rem;
-          }
+        @media (max-width: 1200px) {
+          .hero-grid { grid-template-columns: 1fr; gap: 4rem; text-align: center; }
+          .hero-text p, .hero-btns, .hero-stats { margin-left: auto; margin-right: auto; justify-content: center; }
+          .image-card img { height: 500px; }
+          .floating-badge { right: 20px; }
         }
       `}</style>
     </section>

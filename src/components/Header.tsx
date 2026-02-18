@@ -1,132 +1,205 @@
 import { useState, useEffect } from 'react';
+import { Phone, MessageCircle, Menu, X } from 'lucide-react';
 
 const Header: React.FC = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
-      <div className="container header-container">
-        <div className="logo">
+    <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+      <div className="container nav-content">
+        <div className="nav-logo">
           <a href="/">
-            <span className="logo-main">ESTÉTICA</span>
-            <span className="logo-sub">AVANÇADA</span>
+            <span className="brand-name">CLÍNICA <span className="gold">ESTÉTICA</span></span>
+            <span className="brand-sub">DRA. ISABELLA PREMIUM</span>
           </a>
         </div>
 
-        <nav className="nav-desktop">
-          <a href="#procedimentos" className="nav-link">Procedimentos</a>
-          <a href="#conceito" className="nav-link">O Conceito</a>
-          <a href="#resultados" className="nav-link">Resultados</a>
-          <a href="#contato" className="nav-link">Contato</a>
+        <nav className="nav-links desktop-only">
+          <a href="#procedimentos">Tratamentos</a>
+          <a href="#clinica">A Clínica</a>
+          <a href="#resultados">Resultados</a>
+          <a href="#contato">Contato</a>
         </nav>
 
-        <div className="header-cta">
-          <a href="https://wa.me/5511999999999" target="_blank" className="btn-luxury secondary small">Agendar Agora</a>
+        <div className="nav-actions">
+          <a href="https://wa.me/5511999999999" target="_blank" className="whatsapp-btn desktop-only">
+            <MessageCircle size={20} />
+            <span>Agendamento</span>
+          </a>
+          <button className="mobile-toggle" onClick={() => setMobileMenu(!mobileMenu)}>
+            {mobileMenu ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
       </div>
 
+      {/* Mobile Menu Overlay */}
+      <div className={`mobile-nav-overlay ${mobileMenu ? 'active' : ''}`}>
+        <nav>
+          <a href="#procedimentos" onClick={() => setMobileMenu(false)}>Tratamentos</a>
+          <a href="#clinica" onClick={() => setMobileMenu(false)}>A Clínica</a>
+          <a href="#resultados" onClick={() => setMobileMenu(false)}>Resultados</a>
+          <a href="#contato" onClick={() => setMobileMenu(false)}>Contato</a>
+          <a href="https://wa.me/5511999999999" className="mobile-cta">Agendar Consulta</a>
+        </nav>
+      </div>
+
       <style>{`
-        .header {
+        .navbar {
           position: fixed;
           top: 0;
           left: 0;
           width: 100%;
-          padding: 2.5rem 0;
+          padding: 1.5rem 0;
           z-index: 1000;
-          transition: var(--transition-ultra);
+          transition: var(--transition);
+          background: transparent;
         }
 
-        .header.scrolled {
-          padding: 1.25rem 0;
-          background-color: rgba(11, 11, 13, 0.9);
-          backdrop-filter: blur(20px);
-          border-bottom: 1px solid rgba(214, 194, 176, 0.1);
+        .navbar.scrolled {
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(10px);
+          padding: 1rem 0;
+          box-shadow: 0 4px 30px rgba(0,0,0,0.03);
+          border-bottom: 1px solid var(--color-border);
         }
 
-        .header-container {
+        .nav-content {
           display: flex;
           justify-content: space-between;
           align-items: center;
         }
 
-        .logo a {
+        .nav-logo a {
           display: flex;
           flex-direction: column;
-          text-decoration: none;
         }
 
-        .logo-main {
+        .brand-name {
           font-family: var(--font-serif);
           font-size: 1.5rem;
-          color: var(--color-white-warm);
           letter-spacing: 0.1em;
-          line-height: 1;
+          font-weight: 600;
+          color: var(--color-graphite);
         }
 
-        .logo-sub {
-          font-family: var(--font-sans);
+        .brand-name .gold {
+          color: var(--color-gold);
+        }
+
+        .brand-sub {
           font-size: 0.6rem;
-          color: var(--color-nude);
-          letter-spacing: 0.5em;
-          margin-top: 0.3rem;
-          font-weight: 300;
+          letter-spacing: 0.4em;
+          color: var(--color-text);
+          margin-top: 0.2rem;
+          font-weight: 500;
         }
 
-        .nav-desktop {
+        .nav-links {
           display: flex;
-          gap: 3rem;
+          gap: 2.5rem;
         }
 
-        .nav-link {
-          font-family: var(--font-sans);
-          font-size: 0.75rem;
+        .nav-links a {
+          font-size: 0.8rem;
           text-transform: uppercase;
-          letter-spacing: 0.2em;
-          color: var(--color-white-warm);
-          text-decoration: none;
-          font-weight: 300;
+          letter-spacing: 0.15em;
+          font-weight: 600;
+          color: var(--color-graphite);
           position: relative;
-          opacity: 0.8;
-          transition: var(--transition-ultra);
         }
 
-        .nav-link:hover {
-          opacity: 1;
-          color: var(--color-nude);
-        }
-
-        .nav-link::after {
+        .nav-links a::after {
           content: '';
           position: absolute;
-          bottom: -8px;
+          bottom: -5px;
           left: 0;
           width: 0;
           height: 1px;
-          background: var(--color-gold-metallic);
-          transition: var(--transition-ultra);
+          background: var(--color-gold);
+          transition: var(--transition);
         }
 
-        .nav-link:hover::after {
+        .nav-links a:hover::after {
           width: 100%;
         }
 
-        .small {
-          padding: 0.75rem 1.5rem;
-          font-size: 0.65rem;
+        .whatsapp-btn {
+          display: flex;
+          align-items: center;
+          gap: 0.8rem;
+          background: var(--color-gold);
+          color: white;
+          padding: 0.7rem 1.5rem;
+          border-radius: 4px;
+          font-size: 0.85rem;
+          font-weight: 600;
+        }
+
+        .whatsapp-btn:hover {
+          background: var(--color-gold-dark);
+          transform: translateY(-2px);
+        }
+
+        .mobile-toggle {
+          display: none;
+          background: none;
+          border: none;
+          color: var(--color-graphite);
+          cursor: pointer;
+        }
+
+        .mobile-nav-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          background: var(--color-white);
+          z-index: 999;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transform: translateX(100%);
+          transition: var(--transition);
+        }
+
+        .mobile-nav-overlay.active {
+          transform: translateX(0);
+        }
+
+        .mobile-nav-overlay nav {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 2rem;
+        }
+
+        .mobile-nav-overlay a {
+          font-size: 1.5rem;
+          font-family: var(--font-serif);
+          color: var(--color-graphite);
+        }
+
+        .mobile-cta {
+          margin-top: 1rem;
+          background: var(--color-gold);
+          color: white !important;
+          padding: 1rem 2rem;
+          font-size: 1rem !important;
+          font-family: var(--font-sans) !important;
+          font-weight: 600;
         }
 
         @media (max-width: 992px) {
-          .nav-desktop {
-            display: none;
-          }
+          .desktop-only { display: none; }
+          .mobile-toggle { display: block; }
         }
       `}</style>
     </header>

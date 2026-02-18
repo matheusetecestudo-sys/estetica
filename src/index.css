@@ -1,25 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@100;200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
 
 :root {
-  /* Brand Colors - New Deep Luxury Palette */
-  --color-black: #0B0B0D;
-  --color-nude: #D6C2B0;
-  --color-gold-metallic: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-  --color-gold-static: #C5A059;
-  --color-white-warm: #F8F6F3;
-  --color-gray-deep: #1A1A1C;
-  --color-text-muted: #8E8E93;
+  /* Clean Premium Palette */
+  --color-white: #FFFFFF;
+  --color-off-white: #FDFBFA;
+  --color-nude-light: #F7F3F0;
+  --color-nude: #EADED5;
+  --color-gold: #C6A75E;
+  --color-gold-dark: #A68B4D;
+  --color-graphite: #2D2D2D;
+  --color-text: #4A4A4A;
+  --color-border: #ECE4DE;
 
   /* Typography */
   --font-serif: 'Cormorant Garamond', serif;
-  --font-sans: 'Inter', sans-serif;
+  --font-sans: 'Montserrat', sans-serif;
 
-  /* Layout */
-  --section-padding: 160px 0;
-  --container-max-width: 1400px;
-
-  /* Transitions */
-  --transition-ultra: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  /* Utilities */
+  --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.03);
+  --section-padding: 120px 0;
 }
 
 * {
@@ -30,16 +30,14 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: var(--color-black);
 }
 
 body {
-  background-color: var(--color-black);
-  color: var(--color-white-warm);
+  background-color: var(--color-white);
+  color: var(--color-text);
   font-family: var(--font-sans);
-  line-height: 1.7;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 
 h1,
@@ -47,127 +45,106 @@ h2,
 h3,
 h4 {
   font-family: var(--font-serif);
-  font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  color: var(--color-graphite);
+  line-height: 1.2;
 }
 
 p {
-  font-size: 1.125rem;
+  font-size: 1.05rem;
+  color: var(--color-text);
   font-weight: 300;
-  letter-spacing: 0.01em;
-  color: var(--color-text-muted);
 }
 
-/* Luxury Utilities */
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
 .container {
   width: 90%;
-  max-width: var(--container-max-width);
+  max-width: 1280px;
   margin: 0 auto;
 }
 
-.gold-text {
-  background: var(--color-gold-metallic);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Luxury Buttons */
+.btn-gold {
   display: inline-block;
-}
-
-.btn-luxury {
-  padding: 1.25rem 3rem;
-  font-family: var(--font-sans);
+  padding: 1.1rem 2.8rem;
+  background-color: var(--color-gold);
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
   font-size: 0.8rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
-  transition: var(--transition-ultra);
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  font-weight: 600;
+  border-radius: 0;
+  border: 1px solid var(--color-gold);
   cursor: pointer;
+  transition: var(--transition);
 }
 
-.btn-luxury.primary {
-  background: var(--color-gold-metallic);
-  color: var(--color-black);
-  border: none;
+.btn-gold:hover {
+  background-color: transparent;
+  color: var(--color-gold);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(198, 167, 94, 0.2);
 }
 
-.btn-luxury.primary:hover {
-  transform: translateY(-5px);
-  filter: brightness(1.1);
-  box-shadow: 0 20px 40px rgba(179, 135, 40, 0.2);
-}
-
-.btn-luxury.secondary {
-  border: 1px solid rgba(214, 194, 176, 0.3);
-  color: var(--color-white-warm);
-}
-
-.btn-luxury.secondary:hover {
-  border-color: var(--color-nude);
-  background: rgba(214, 194, 176, 0.05);
-}
-
-.section-title {
-  margin-bottom: 6rem;
-}
-
-.section-title.center {
-  text-align: center;
-}
-
-.section-title .tagline {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
+.btn-outline {
+  display: inline-block;
+  padding: 1.1rem 2.8rem;
+  background-color: transparent;
+  color: var(--color-graphite);
   text-transform: uppercase;
-  letter-spacing: 0.5em;
-  color: var(--color-nude);
+  letter-spacing: 0.15em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid var(--color-graphite);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-graphite);
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* Section Titles */
+.section-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.section-header .subtitle {
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: var(--color-gold);
+  font-size: 0.85rem;
+  font-weight: 500;
   display: block;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-.section-title h2 {
-  font-size: clamp(3rem, 6vw, 5rem);
-  color: var(--color-white-warm);
+.section-header h2 {
+  font-size: 3.5rem;
+  font-weight: 500;
 }
 
-/* Animations */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: var(--transition-ultra);
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-black);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-gray-deep);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-gold-static);
+.gold-line {
+  width: 60px;
+  height: 2px;
+  background-color: var(--color-gold);
+  margin: 2rem auto 0;
 }
 
 @media (max-width: 768px) {
-  :root {
-    --section-padding: 100px 0;
-  }
-
-  .section-title h2 {
+  .section-header h2 {
     font-size: 2.5rem;
   }
 }
